@@ -1,27 +1,33 @@
+// Declare variables to count responses
+
+var correct = 0;
+var incorrect = 0;
+var unanswered = 4;
+
 // Create Trivia Questions as a string
 
 var triviaQuestions =
   "<p>How far can a honey bee fly...</p>" +
   "<div class='section'>" +
-  "<input type='radio' name='fly'/>" +
+  "<input type='radio' name='fly' value='no'/>" +
   "<label>100 miles</label>" +
-  "<input type='radio' name='fly'/>" +
+  "<input type='radio' name='fly' value='no'/>" +
   "<label>1 mile</label>" +
-  "<input type='radio' name='fly'/>" +
+  "<input type='radio' name='fly' value='yes'/>" +
   "<label>6 miles</label>" +
-  "<input type='radio' name='fly'/>" +
+  "<input type='radio' name='fly' value='no'/>" +
   "<label>15 miles</label>" +
   "</div>" +
   "      <br />" +
   "<p>... and how fast can a honey bee fly?</p>" +
   "<p class=subtle> (Answers courtesy of Bee's Wrap Care product insert.)</p>" +
-  "<div class='section'><input type='radio' name='fast'/><label>100 miles per hour</label><input type='radio' name='fast'/><label>1 mile per hour</label><input type='radio' name='fast'/>" +
-  "<label>6 miles per hour</label><input type='radio' name='fast'/><label>15 miles per hour</label></div><br />" +
-  "<p>Seals and sea lions are the same.</p><div class='section'><input type='radio' name='seal'/><label>True</label>" +
-  "<input type='radio' name='seal'/><label>False</label></div><br /><p>What is the tallest tree in the world?</p>" +
+  "<div class='section'><input type='radio' name='fast' value='no'/><label>100 miles per hour</label><input type='radio' name='fast' value='no'/><label>1 mile per hour</label><input type='radio' name='fast' value='no'/>" +
+  "<label>6 miles per hour</label><input type='radio' name='fast' value='yes'/><label>15 miles per hour</label></div><br />" +
+  "<p>Seals and sea lions are the same species.</p><div class='section'><input type='radio' name='seal' value='yes'/><label>True</label>" +
+  "<input type='radio' name='seal' value='no'/><label>False</label></div><br /><p>What is the tallest tree in the world?</p>" +
   "<p class='subtle'>(Afterwards, check out the ten tallest trees on the treehugger website.)</p>" +
-  "<div class='section'><input type='radio' name='tree'/><label>Hyperion</label><input type='radio' name='tree'/>" +
-  "<label>Alpine Ash</label><input type='radio' name='tree'/><label>Yellow meranti</label><input type='radio' name='tree'/><label>Doerner Fir</label>";
+  "<div class='section'><input type='radio' name='tree' value='yes'/><label>Hyperion</label><input type='radio' name='tree' value='no'/>" +
+  "<label>Alpine Ash</label><input type='radio' name='tree' value='no'/><label>Yellow meranti</label><input type='radio' name='tree' value='no'/><label>Doerner Fir</label>";
 
 // load document, add start button
 $(document).ready(function() {
@@ -49,6 +55,9 @@ $(document).ready(function() {
     console.log("game ended");
     $("#main").empty();
     $("#main").append("<p>You're done!</p>");
+    $("#main").append("Correct: " + correct);
+    $("#main").append("Incorrect: " + incorrect);
+    $("#main").append("Unanswered: " + unans);
   });
 });
 
