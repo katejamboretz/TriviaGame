@@ -20,12 +20,13 @@ h1 {
   font-weight: bolder;
 }
 
-.main {
+#main {
   background-color: orange;
   color: navy;
   padding: 20px;
   margin-left: 30px;
   margin-right: 30px;
+  height: 500px;
 }
 
 p {
@@ -35,4 +36,14 @@ p {
 .subtle {
   font-weight: normal;
   font-style: italic;
+}
+
+.button {
+  padding: 5px 10px 5px 10px;
+  background-color: navy;
+  width: 50px;
+  color: aliceblue;
+  font-weight: bold;
+  display: inline-block;
+  margin: 20px;
 }
