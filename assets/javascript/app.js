@@ -31,6 +31,7 @@ var triviaQuestions =
   "<label>Alpine Ash</label><input type='radio' name='tree' value='no'/><label>Yellow meranti</label><input type='radio' name='tree' value='no'/><label>Doerner Fir</label>";
 
 // load document, add start button
+
 $(document).ready(function() {
   $("#main").empty();
   $("#main").append("<div class = button id='start'>Start</div>");
@@ -40,9 +41,7 @@ $(document).ready(function() {
   console.log("document is ready");
 
   // if you click start button, start timer
-
   // append html elements into main div
-
   // create "done" button
 
   $("#start").on("click", function() {
@@ -59,13 +58,47 @@ $(document).ready(function() {
       }, 1000);
     }
 
-    setTimeout(function() {
+    // remove elements from main, replace with times up, as well as number correct, number incorrect, number unanswered
+
+    var timebomb = setTimeout(function() {
       console.log("Time ran out.");
       clearInterval(timer);
       updateTime = 30;
       $("#timer").html(
         "<div id='timer'>Time Remaining: " + updateTime + " seconds"
       );
+      if ($("input[name='fly']:checked").val() === "yes") {
+        correct++;
+        unanswered--;
+      }
+      if ($("input[name='fast']:checked").val() === "yes") {
+        correct++;
+        unanswered--;
+      }
+      if ($("input[name='seal']:checked").val() === "yes") {
+        correct++;
+        unanswered--;
+      }
+      if ($("input[name='tree']:checked").val() === "yes") {
+        correct++;
+        unanswered--;
+      }
+      if ($("input[name='fly']:checked").val() === "no") {
+        incorrect++;
+        unanswered--;
+      }
+      if ($("input[name='fast']:checked").val() === "no") {
+        incorrect++;
+        unanswered--;
+      }
+      if ($("input[name='seal']:checked").val() === "no") {
+        incorrect++;
+        unanswered--;
+      }
+      if ($("input[name='tree']:checked").val() === "no") {
+        incorrect++;
+        unanswered--;
+      }
       $("#main").empty();
       $("#main").append("<p>Time's up!</p>");
       $("#main").append("<p class='subtle'>Correct: " + correct);
@@ -78,10 +111,43 @@ $(document).ready(function() {
     $("#done").on("click", function() {
       console.log("game ended");
       clearInterval(timer);
+      clearTimeout(timebomb);
       updateTime = 30;
       $("#timer").html(
         "<div id='timer'>Time Remaining: " + updateTime + " seconds"
       );
+      if ($("input[name='fly']:checked").val() === "yes") {
+        correct++;
+        unanswered--;
+      }
+      if ($("input[name='fast']:checked").val() === "yes") {
+        correct++;
+        unanswered--;
+      }
+      if ($("input[name='seal']:checked").val() === "yes") {
+        correct++;
+        unanswered--;
+      }
+      if ($("input[name='tree']:checked").val() === "yes") {
+        correct++;
+        unanswered--;
+      }
+      if ($("input[name='fly']:checked").val() === "no") {
+        incorrect++;
+        unanswered--;
+      }
+      if ($("input[name='fast']:checked").val() === "no") {
+        incorrect++;
+        unanswered--;
+      }
+      if ($("input[name='seal']:checked").val() === "no") {
+        incorrect++;
+        unanswered--;
+      }
+      if ($("input[name='tree']:checked").val() === "no") {
+        incorrect++;
+        unanswered--;
+      }
       $("#main").empty();
       $("#main").append("<p>You're done!</p>");
       $("#main").append("<p class='subtle'>Correct: " + correct);
@@ -92,9 +158,3 @@ $(document).ready(function() {
 
   // add on click functions to each radio button to store value to it's id(?)
 });
-
-// create input events - allow one answer per question
-
-// create boolean for when timer ends
-
-// remove elements from main, replace with times up, as well as number correct, number incorrect, number unanswered
