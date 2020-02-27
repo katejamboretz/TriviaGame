@@ -3,6 +3,7 @@
 var correct = 0;
 var incorrect = 0;
 var unanswered = 4;
+var updateTime = 30;
 
 // Create Trivia Questions as a string
 
@@ -33,6 +34,9 @@ var triviaQuestions =
 $(document).ready(function() {
   $("#main").empty();
   $("#main").append("<div class = button id='start'>Start</div>");
+  $("#timer").html(
+    "<div id='timer'>Time Remaining: " + updateTime + " seconds"
+  );
   console.log("document is ready");
 
   // if you click start button, start timer
@@ -46,11 +50,38 @@ $(document).ready(function() {
     console.log("game started");
     $("#main").html(triviaQuestions);
     $("#main").append("<div class = 'button' id='done'>Done</div>");
+    if (updateTime > 0) {
+      var timer = setInterval(function() {
+        updateTime--;
+        $("#timer").html(
+          "<div id='timer'>Time Remaining: " + updateTime + " seconds"
+        );
+      }, 1000);
+    }
+
+    setTimeout(function() {
+      console.log("Time ran out.");
+      clearInterval(timer);
+      updateTime = 30;
+      $("#timer").html(
+        "<div id='timer'>Time Remaining: " + updateTime + " seconds"
+      );
+      $("#main").empty();
+      $("#main").append("<p>Time's up!</p>");
+      $("#main").append("<p class='subtle'>Correct: " + correct);
+      $("#main").append("<p class='subtle'>Incorrect: " + incorrect);
+      $("#main").append("<p class='subtle'>Unanswered: " + unanswered);
+    }, 30000);
 
     // if "done" button clicked, replace with "Your done!" and number correct, number incorrect, number unanswered
 
     $("#done").on("click", function() {
       console.log("game ended");
+      clearInterval(timer);
+      updateTime = 30;
+      $("#timer").html(
+        "<div id='timer'>Time Remaining: " + updateTime + " seconds"
+      );
       $("#main").empty();
       $("#main").append("<p>You're done!</p>");
       $("#main").append("<p class='subtle'>Correct: " + correct);
