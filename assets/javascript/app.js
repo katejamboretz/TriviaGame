@@ -48,17 +48,18 @@ $(document).ready(function() {
     $("#main").append("<div class = 'button' id='done'>Done</div>");
 
     // if "done" button clicked, replace with "Your done!" and number correct, number incorrect, number unanswered
-    // not working right now....
+
+    $("#done").on("click", function() {
+      console.log("game ended");
+      $("#main").empty();
+      $("#main").append("<p>You're done!</p>");
+      $("#main").append("<p class='subtle'>Correct: " + correct);
+      $("#main").append("<p class='subtle'>Incorrect: " + incorrect);
+      $("#main").append("<p class='subtle'>Unanswered: " + unanswered);
+    });
   });
 
-  $("#done").on("click", function() {
-    console.log("game ended");
-    $("#main").empty();
-    $("#main").append("<p>You're done!</p>");
-    $("#main").append("Correct: " + correct);
-    $("#main").append("Incorrect: " + incorrect);
-    $("#main").append("Unanswered: " + unans);
-  });
+  // add on click functions to each radio button to store value to it's id(?)
 });
 
 // create input events - allow one answer per question
